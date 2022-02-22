@@ -2,11 +2,22 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   var questionIndex = 0;
 
   void answerQuestions() {
-    questionIndex = questionIndex + 1;
+    setState(() {
+      if (questionIndex < 1) {
+        questionIndex = questionIndex + 1;
+      } else {
+        questionIndex = 0;
+      }
+    });
   }
 
   @override
