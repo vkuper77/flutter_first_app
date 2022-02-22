@@ -8,14 +8,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+  var _questionIndex = 0;
 
-  void answerQuestions() {
+  void answerQuestions(length) {
     setState(() {
-      if (questionIndex < 1) {
-        questionIndex = questionIndex + 1;
+      if (_questionIndex < length - 1) {
+        _questionIndex++;
       } else {
-        questionIndex = 0;
+        _questionIndex = 0;
       }
     });
   }
@@ -34,17 +34,17 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Text(questions[questionIndex]),
+            Text(questions[_questionIndex]),
             RaisedButton(
-              onPressed: answerQuestions,
+              onPressed: () => answerQuestions(questions.length),
               child: Text('Answer 1'),
             ),
             RaisedButton(
-              onPressed: answerQuestions,
+              onPressed: () => answerQuestions(questions.length),
               child: Text('Answer 2'),
             ),
             RaisedButton(
-              onPressed: answerQuestions,
+              onPressed: () => answerQuestions(questions.length),
               child: Text('Answer 3'),
             )
           ],
