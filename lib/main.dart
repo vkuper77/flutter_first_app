@@ -11,29 +11,48 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
-  var finish = false;
+  var _totalScore = 0;
+  var _finish = false;
 
   final _questions = const [
     {
       'questionText': 'What\'s you favorite color?',
-      'answers': ['Red', 'Blue', 'Green', 'White']
+      'answers': [
+        {'text': 'Red', 'score': 10},
+        {'text': 'Blue', 'score': 30},
+        {'text': 'Green', 'score': 5},
+        {'text': 'White', 'score': 70},
+      ]
     },
     {
       'questionText': 'What\'s you favorite animal?',
-      'answers': ['Cat', 'Dog', 'Rabbit', 'Snake', 'Lion', 'Elephant']
+      'answers': [
+        {'text': 'Cat', 'score': 4},
+        {'text': 'Dog', 'score': 7},
+        {'text': 'Rabbit', 'score': 2},
+        {'text': 'Snake', 'score': 8},
+        {'text': 'Lion', 'score': 3},
+        {'text': 'Elephant', 'score': 5}
+      ]
     },
     {
       'questionText': 'What\'s you favorite dish?',
-      'answers': ['Pizza', 'Burger', 'Sushi', 'potate']
+      'answers': [
+        {'text': 'Pizza', 'score': 3},
+        {'text': 'Burger', 'score': 7},
+        {'text': 'Sushi', 'score': 9},
+        {'text': 'potate', 'score': 5}
+      ]
     },
   ];
 
-  void _answerQuestions() {
+  void _answerQuestions(int score) {
+    _totalScore += score;
     setState(() {
       if (_questionIndex < _questions.length - 1) {
         _questionIndex++;
       } else {
-        finish = true;
+        _finish = true;
       }
     });
   }
@@ -47,7 +66,7 @@ class _MyAppState extends State<MyApp> {
           appBar: AppBar(
             title: Text('My First App'),
           ),
-          body: !finish
+          body: !_finish
               ? Quiz(
                   question: question as String,
                   questions: _questions,

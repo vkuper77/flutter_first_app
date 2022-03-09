@@ -6,7 +6,7 @@ class Quiz extends StatelessWidget {
   final String question;
   final List<Map<String, Object>> questions;
   final int index;
-  final VoidCallback callback;
+  final Function callback;
 
   Quiz(
       {required this.question,
@@ -18,8 +18,9 @@ class Quiz extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         children: [
           Question(question as String),
-          ...(questions[index]['answers'] as List<String>)
-              .map((answer) => Answer(callback, answer))
+          ...(questions[index]['answers'] as List<Map<String, Object>>)
+              .map((answer) => Answer(
+                  () => callback(answer['score']), answer['text'] as String))
               .toList()
         ],
       );
