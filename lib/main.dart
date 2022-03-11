@@ -57,6 +57,14 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void _restartQuiz() {
+    setState(() {
+      _finish = false;
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var question = _questions[_questionIndex]['questionText'];
@@ -72,7 +80,7 @@ class _MyAppState extends State<MyApp> {
                   questions: _questions,
                   index: _questionIndex,
                   callback: _answerQuestions)
-              : Result(_totalScore)),
+              : Result(_totalScore, _restartQuiz)),
     );
   }
 }
