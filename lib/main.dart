@@ -71,16 +71,49 @@ class _MyAppState extends State<MyApp> {
 
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: Text('My First App'),
-          ),
-          body: !_finish
-              ? Quiz(
-                  question: question as String,
-                  questions: _questions,
-                  index: _questionIndex,
-                  callback: _answerQuestions)
-              : Result(_totalScore, _restartQuiz)),
+        appBar: AppBar(
+          title: Text('My First App'),
+        ),
+        // body: !_finish
+        //     ? Quiz(
+        //         question: question as String,
+        //         questions: _questions,
+        //         index: _questionIndex,
+        //         callback: _answerQuestions)
+        //     : Result(_totalScore, _restartQuiz)
+        body: Center(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              // style: ButtonStyle(
+              //     backgroundColor: MaterialStateProperty.all(Colors.orange),
+              //     foregroundColor: MaterialStateProperty.all(Colors.white)),
+              style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 201, 125, 11),
+                  onPrimary: Colors.white),
+              child: Text('Old Raised Button'),
+              onPressed: () {
+                print('RaisedButton');
+              },
+            ),
+            TextButton(
+                child: Text('Old Flat Button'),
+                style: TextButton.styleFrom(primary: Colors.orange),
+                onPressed: () {
+                  print('FlatButton');
+                }),
+            OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                    primary: Colors.orange,
+                    side: BorderSide(color: Colors.orange)),
+                child: Text('Old Outline Button'),
+                onPressed: () {
+                  print('OutlineButton');
+                })
+          ],
+        )),
+      ),
     );
   }
 }
